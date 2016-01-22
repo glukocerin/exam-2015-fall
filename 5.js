@@ -7,9 +7,59 @@
 // It should have a "deleteCarByType" method that removes the cars from the inner list
 // that have the given type
 
+function CarStore(cars) {
+	var me = this;
+	this.cars = cars;
+
+	this.addCar = function(carType, carPrice, carYear) {
+		var car = {
+			type: carType,
+			price: carPrice,
+			year: carYear
+		};
+		this.cars.push(car);
+		return this.cars;
+	}
 
 
+	this.getSumPrice = function() {
+		var sumPrice = 0;
+		this.cars.forEach(function(car) {
+			sumPrice += car.price;
+		});
+		return sumPrice;
+	}
 
+	this.getOldestCarType = function() {
+		var oldestCarYear = cars[0].year;
+		var oldestCarType = '';
+		
+		this.cars.forEach(function(car) {
+			if (car.year < oldestCarYear) {
+				oldestCarYear = car.year;
+				oldestCarType = car.type;
+			}
+		});
+		return oldestCarType;
+	}
+
+	this.deleteCarByType = function(car) {
+		for (var i = 0; i < this.cars.length; i++) {
+			if (this.cars[i].type === car) {
+				this.cars.splice(i, 1);
+			}
+		}
+	}
+
+	this.getSumPrice = function() {
+		var sumPrice = 0;
+		this.cars.forEach(function(car) {
+			sumPrice += car.price
+		});
+		return sumPrice;
+	}
+
+}
 
 
 
@@ -24,8 +74,9 @@ var cars = [
 var carStore = new CarStore(cars);
 
 carStore.addCar('Smart', 18000, 2011);
-console.log(carStore.getSumPrice()); // 122000 
-console.log(carStore.getOldestCarType()); // 'Trabant'
-carStore.deleteCarByType('Ferrari');
-console.log(carStore.getSumPrice()); // 82000 
+
+ console.log(carStore.getSumPrice()); // 122000 
+ console.log(carStore.getOldestCarType()); // 'Trabant'
+ carStore.deleteCarByType('Ferrari');
+ console.log(carStore.getSumPrice()); // 82000 
 

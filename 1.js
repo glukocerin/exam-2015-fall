@@ -5,7 +5,13 @@
 // of it's elements are the triple of the original array's elements!
 
 
-
+function tripleEachElement(array) {
+	var result = [];
+	array.forEach(function(number) {
+		result.push(number * 3);
+	});
+	return result;
+}
 
 
 
